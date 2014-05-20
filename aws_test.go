@@ -58,21 +58,13 @@ func TestUnmarshalError(t *testing.T) {
 }
 
 func TestParamEncode(t *testing.T) {
-	tests := []struct {
-		key      string
-		value    string
-		expected string
-	}{
-		{"foo", "bar", "foo=bar"},
-		{"foo.1", "spaces here", "baz.1=spaces%20here"},
-		{"foo", "punctuation's", "foo=punctuation%27s"},
+	param := Param{
+		Key: "foo",
+		Val: "bar baz",
 	}
-
-	for i, test := range tests {
-		param := Param{Key: test.key, Val: test.value}
-		got := param.Encode()
-		if got != test.expected {
-			t.Errorf("test[%d]: expected %s, got %s", i, test.expected, got)
-		}
+	expected := "foo=bar%20baz"
+	got := param.Encode()
+	if expected != got {
+		t.Errorf("expected %s, got %s", expected, got)
 	}
 }
