@@ -14,9 +14,8 @@ func init() {
 	}
 }
 
-// URIEncode takes a string and URI-encodes it in a way suitable to
-// be used in AWS signatures. Notably, it replaces spaces with
-// "%20" instead of "+".
+// URIEncode takes a string and URI-encodes it in a way suitable to be used in
+// AWS signatures. Notably, it replaces spaces with "%20" instead of "+".
 func URIEncode(s string) string {
 	encode := false
 	for i := 0; i != len(s); i++ {
